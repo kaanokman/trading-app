@@ -1,0 +1,140 @@
+.header {
+    display: flex;
+
+    background-color: #333;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    top: 0;
+
+    text-align: center;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+
+    z-index: 1;
+
+    width: 100%;
+    height: 50px;
+}
+
+/* Add a black background color to the top navigation */
+.header-nav {
+    display: flex;
+
+    background-color: #333;
+    color: white;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    width: 100px;
+    height: 100%;
+    /* Make sure it takes the full height of the header */
+}
+
+/* Add a black background color to the top navigation */
+.header-item {
+    display: flex;
+
+    background-color: #333;
+    color: white;
+
+    margin: 0;
+    border: 0;
+
+    align-items: center;
+    /* Vertically align text within the link */
+    justify-content: right;
+    /* Horizontally center the text */
+
+    height: 100%;
+    /* Make sure it takes the full height of the header */
+    width: 400px;
+}
+
+.header-item-child {
+    display: flex;
+
+    background-color: #333;
+    color: white;
+
+    margin: 0;
+    border: 0;
+    padding-right: 20px;
+
+    align-items: center;
+    /* Vertically align text within the link */
+    justify-content: right;
+    /* Horizontally center the text */
+
+    height: 100%;
+    /* Make sure it takes the full height of the header */
+    width: 100%;
+}
+
+/* Add a black background color to the top navigation */
+.logout-button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+
+    display: flex;
+    background-color: #04AA6D;
+    color: white;
+
+    text-align: center;
+    align-items: center;
+    /* Vertically align text within the link */
+    justify-content: center;
+    /* Horizontally center the text */
+
+    height: 60%;
+    /* Match the height of the header */
+    width: 50%;
+
+    text-decoration: none;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.header-nav a {
+    color: #ffffff;
+    text-align: center;
+    /* padding: 0 16px; Remove vertical padding */
+    display: flex;
+    align-items: center;
+    /* Vertically align text within the link */
+    justify-content: center;
+    /* Horizontally center the text */
+    height: 50px;
+    /* Match the height of the header */
+    width: 120px;
+    /* Fixed width for consistency */
+    text-decoration: none;
+    border: none;
+}
+
+/* Change the color of links on hover */
+.header-nav a:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* Add a color to the active/current link */
+.header-nav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
