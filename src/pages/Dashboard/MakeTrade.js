@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 import "./Trade.css"
+import "./Dashboard.css"
+
 import SearchableDropdown from "./SearchableDropdown"
 
 export default function MakeTrade({ showMessage, setShowMessage, message, setMessage, clientID, setClientID, balance, setBalance }) {
@@ -107,6 +109,14 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
                 const { message, total_price, old_balance } = response.data;
                 if (message === 'Trade Complete.') {
                     setMessage('Trade Successful!');
+
+                    setQuotePrice(0)
+                    setTotalQuotePrice(0)
+                    setQuoteDisplayed(false);
+                    setStockTicker('')
+                    setNumShares('')
+                    setAction('BUY')
+
                     if (action === 'BUY') {
                         setBalance(old_balance - total_price);
                     }
@@ -129,9 +139,21 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
             {clientID && clientID !== "null" ? (
 
                 <div className="maketrade_box">
-                    <div>
-                        <h1>Make Trade</h1>
+                    <div className="text_fields">
+                        <div class="title">Make Trade</div>
+                        {quoteDisplayed === true ? (
+                            <>
+                                <div class="text_field">Price/Share</div>
+                                <div class="text_field">Total Price</div>
+                            </>
+                        ) : (
+                            <>
+                                <div class="text_field_disabled">Price/Share</div>
+                                <div class="text_field_disabled">Total Price</div>
+                            </>
+                        )}
                     </div>
+
                     <form className="trade_fields" onSubmit={handleQuote}>
 
                         {quoteDisplayed === false ? (
@@ -140,6 +162,7 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
 
                                 <div className="s">
                                     <SearchableDropdown
+                                        clientID={clientID}
                                         quoteDisplayed={quoteDisplayed}
                                         setQuoteDisplayed={setQuoteDisplayed}
                                         stockTicker={stockTicker}
@@ -285,7 +308,69 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
 
 
             ) : (
-                <p>Please log in to make a trade.</p>
+                <div className="maketrade_box">
+                    <div className="text_fields">
+                        <div class="title">Make Trade</div>
+                        <div class="text_field_disabled">Price/Share</div>
+                        <div class="text_field_disabled">Total Price</div>
+                    </div>
+
+                    <form className="trade_fields" onSubmit={handleQuote}>
+
+
+
+                        <div className="s disabled">
+                            <SearchableDropdown
+                                disabled
+                                stockTicker={stockTicker}
+                                setStockTicker={setStockTicker}
+                                isRequired={isStockTickerRequired}
+                                setIsRequired={setIsStockTickerRequired} />
+                        </div>
+                        <input className="f"
+                            disabled
+                            type='number'
+                            placeholder="Shares"
+                            value={numShares}
+                            onChange={(e) => setNumShares(e.target.value)}
+                            required
+                        />
+                        <select disabled className="f" value={action}>
+                            <option value="BUY">BUY</option>
+                            <option value="SELL">SELL</option>
+                        </select>
+
+
+
+
+                        <button disabled className="trade_button" type="submit">
+
+                            GET QUOTE
+
+                        </button>
+
+
+
+
+                        <div className="f disabled">
+                            {formatPrice(quotePrice)}
+                        </div>
+
+                        <div className="f disabled">
+                            {formatPrice(totalQuotePrice)}
+                        </div>
+
+                        <button disabled type="button" className="buy_button">
+                            {action}
+                        </button>
+
+                        <button disabled type="button" className="cancel_button">
+                            CANCEL
+                        </button>
+
+
+                    </form>
+                </div>
             )}
 
         </>

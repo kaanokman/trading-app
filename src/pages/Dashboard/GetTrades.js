@@ -55,39 +55,37 @@ export default function GetTrades({ clientID, setClientID, balance, setBalance }
     return (
         <>
             {loading ? (
-                <div className="spinner_container">
-                    <div className="spinner"></div>
+                <div className="table_container">
+                    <div className="spinner_container">
+                        <div className="spinner"></div>
+                    </div>
                 </div>) : (
-                <>
-                    {clientID && clientID !== "null" ? (
-                        trades.length > 0 ? (
-                            <div className="table_container">
-                                <table className="table trades">
-                                    <thead>
-                                        <tr>
-                                            {columns.map((column, index) => (
-                                                <th key={index}>{column}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {trades.map((rowData, rowIndex) => (
-                                            <tr key={rowIndex}>
-                                                {rowData.map((cellData, cellIndex) => (
-                                                    <td key={cellIndex}>{cellData}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ) : (
-                            <p>No trades found.</p>
-                        )
-                    ) : (
-                        <p>Please log in to view trades.</p>
-                    )}
-                </>
+
+
+
+                <div className="table_container">
+                    <table className="table trades">
+                        <thead>
+                            <tr>
+                                {columns.map((column, index) => (
+                                    <th key={index}>{column}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {trades.map((rowData, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {rowData.map((cellData, cellIndex) => (
+                                        <td key={cellIndex}>{cellData}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+
+
             )}
         </>
     );

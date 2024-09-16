@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
+import "./Trade.css"
+
+
 export default function Balance({ clientID, setClientID, balance, setBalance }) {
 
     const [loading, setLoading] = useState(true);
@@ -31,9 +34,9 @@ export default function Balance({ clientID, setClientID, balance, setBalance }) 
     return (
         <div>
             {loading ? (<div className="spinner"></div>) : (
-                <>
+                <div className="title">
                     {formattedBalance}
-                </>
+                </div>
             )}
         </div>
     );

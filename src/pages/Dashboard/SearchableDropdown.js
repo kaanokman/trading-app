@@ -3,33 +3,33 @@ import axios from "axios";
 
 import "./Trade.css"
 
-export default function SearchableDropdown({ quoteDisplayed, setQuoteDisplayed, stockTicker, setStockTicker, isRequired, setIsRequired }) {
+export default function SearchableDropdown({ clientID, quoteDisplayed, setQuoteDisplayed, stockTicker, setStockTicker, isRequired, setIsRequired }) {
     const [query, setQuery] = useState("");
-    const [stock, setStock] = useState("");        
-    const [options, setOptions] = useState([]);   
-    const [isOpen, setIsOpen] = useState(false);   
-    const [isOptionSelected, setIsOptionSelected] = useState(false); 
+    const [stock, setStock] = useState("");
+    const [options, setOptions] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
 
     useEffect(() => {
         if (query.length > 0) {
             const data = { "query": query };
             axios.post('http://127.0.0.1:5000/search', data)
                 .then(response => {
-                    setOptions(response.data);      
-                    setIsOpen(true);               
+                    setOptions(response.data);
+                    setIsOpen(true);
                 })
                 .catch(error => {
                     console.error("Error fetching search results:", error);
                 });
         } else {
-            setOptions([]); 
+            setOptions([]);
             setIsOpen(false);
         }
-    }, [query]); 
+    }, [query]);
 
     // Handle input change
     const handleInputChange = (e) => {
-        setQuery(e.target.value);  
+        setQuery(e.target.value);
         // setIsRequired(true);    
     };
 
@@ -37,53 +37,94 @@ export default function SearchableDropdown({ quoteDisplayed, setQuoteDisplayed, 
     const handleOptionSelect = (option) => {
         const [ticker, company] = option;
         setStockTicker(ticker);
-        setStock(`${ticker} - ${company}`);         
-        setQuery(`${ticker} - ${company}`);         
-        setIsOptionSelected(true);                 
-        setIsOpen(false);                         
-        setIsRequired(false);                      
+        setStock(`${ticker} - ${company}`);
+        setQuery(`${ticker} - ${company}`);
+        setIsOptionSelected(true);
+        setIsOpen(false);
+        setIsRequired(false);
     };
 
     const handleClearSelection = () => {
-        setStockTicker("");      
-        setStock("");            
-        setQuery("");           
-        setIsOptionSelected(false); 
-        setIsRequired(true);   
+        setStockTicker("");
+        setStock("");
+        setQuery("");
+        setIsOptionSelected(false);
+        setIsRequired(true);
     };
 
     return (
         <div className="search_container_parent">
             <div className="search_container">
-                {quoteDisplayed === false ? (
+                {clientID && clientID !== "null" ? (
                     <>
-                        <input
-                            className="search_bar"
-                            type="text"
-                            value={query}
-                            onChange={handleInputChange}
-                            placeholder="Search company/ticker..."
-                            disabled={isOptionSelected}
-                            required={isRequired} 
-                        />
+                        {quoteDisplayed === false ? (
+                            <>
+                                <input
+                                    className="search_bar"
+                                    type="text"
+                                    value={query}
+                                    onChange={handleInputChange}
+                                    placeholder="Search company/ticker..."
+                                    disabled={isOptionSelected}
+                                    required={isRequired}
+                                />
 
-                        {isOptionSelected ? (
-                            <button
-                                type="button"
-                                className="red"
-                                onClick={handleClearSelection}
-                            >
-                                X
-                            </button>
+                                {isOptionSelected ? (
+                                    <button
+                                        type="button"
+                                        className="red"
+                                        onClick={handleClearSelection}
+                                    >
+                                        X
+                                    </button>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        className="red"
+                                        onClick={handleClearSelection}
+                                    >
+                                        X
+                                    </button>
+                                )}
+
+                            </>
+
                         ) : (
-                            <button
-                                type="button"
-                                className="red"
-                                onClick={handleClearSelection}
-                            >
-                                X
-                            </button>
+
+                            <>
+                                <input
+                                    className="search_bar"
+                                    type="text"
+                                    value={query}
+                                    onChange={handleInputChange}
+                                    placeholder="Search company/ticker..."
+                                    disabled={isOptionSelected}
+                                    required={isRequired}
+                                />
+
+                                {isOptionSelected ? (
+                                    <button
+                                        disabled
+                                        type="button"
+                                        className="red"
+                                        onClick={handleClearSelection}
+                                    >
+                                        X
+                                    </button>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        className="red"
+                                        onClick={handleClearSelection}
+                                    >
+                                        X
+                                    </button>
+                                )}
+
+                            </>
+
                         )}
+
 
                     </>
 
@@ -95,33 +136,21 @@ export default function SearchableDropdown({ quoteDisplayed, setQuoteDisplayed, 
                             value={query}
                             onChange={handleInputChange}
                             placeholder="Search company/ticker..."
-                            disabled={isOptionSelected}
-                            required={isRequired} 
+                            disabled
+                            required={isRequired}
                         />
-                        {isOptionSelected ? (
-                            <button
-                                disabled
-                                type="button"
-                                className="red"
-                                onClick={handleClearSelection}
-                            >
-                                X
-                            </button>
-                        ) : (
-                            <button
-                                type="button"
-                                className="red"
-                                onClick={handleClearSelection}
-                            >
-                                X
-                            </button>
-                        )}
+
+                        <button
+                            type="button"
+                            className="red"
+                            onClick={handleClearSelection}
+                            disabled
+                        >
+                            X
+                        </button>
 
                     </>
-
                 )}
-
-
 
             </div>
 

@@ -26,40 +26,38 @@ export default function Dashboard({ balance, setBalance }) {
                     {message}
                 </div>
 
-                {clientID && clientID !== "null" ? (
-                    <div className="grid-dashboard">
-                        <div className="maketrade_box">
-                            <MakeTrade
-                                showMessage={showMessage} setShowMessage={setShowMessage}
-                                message={message} setMessage={setMessage}
-                                clientID={clientID} setClientID={setClientID}
-                                balance={balance} setBalance={setBalance} />
-                        </div>
-                        <div className="balance_box">
-                            <Balance
-                                clientID={clientID} setClientID={setClientID}
-                                balance={balance} setBalance={setBalance}
-                            />
-                        </div>
-                        <div className="portfolio_box">
-                            <h1>Portfolio</h1>
-                            <GetPortfolio
-                                clientID={clientID} setClientID={setClientID}
-                                balance={balance} setBalance={setBalance}
-                            />
-                        </div>
-                        <div className="watchlist_box">
-                            {/* <Watchlist/> */}
-                            <div>Watchlist</div>
-                        </div>
-                        <div className="gettrades_box">
-                            <h1>Trade History</h1>
-                            <GetTrades
-                                clientID={clientID} setClientID={setClientID}
-                                balance={balance} setBalance={setBalance} />
-                        </div>
+                <div className="grid-dashboard">
+                    <div className="maketrade_box">
+                        <MakeTrade
+                            showMessage={showMessage} setShowMessage={setShowMessage}
+                            message={message} setMessage={setMessage}
+                            clientID={clientID} setClientID={setClientID}
+                            balance={balance} setBalance={setBalance} />
                     </div>
-                ) : (<p>Please log in or sign up to view dashboard.</p>)}
+                    <div className="balance_box">
+                        <Balance
+                            clientID={clientID} setClientID={setClientID}
+                            balance={balance} setBalance={setBalance}
+                        />
+                    </div>
+                    <div className="portfolio_box">
+                        <h1>Portfolio</h1>
+                        <GetPortfolio
+                            clientID={clientID} setClientID={setClientID}
+                            balance={balance} setBalance={setBalance}
+                        />
+                    </div>
+                    <div className="watchlist_box">
+                        {/* <Watchlist/> */}
+                        <div>Watchlist</div>
+                    </div>
+                    <div className="gettrades_box">
+                        <h1>Trade History</h1>
+                        <GetTrades
+                            clientID={clientID} setClientID={setClientID}
+                            balance={balance} setBalance={setBalance} />
+                    </div>
+                </div>
             </div>
 
         </div>

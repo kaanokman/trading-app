@@ -52,44 +52,45 @@ export default function Portfolio({ balance, setBalance, clientID, setClientID }
                     console.error('Error occurred:', error);
                 });
         }
+
+        else { setLoading(false) }
     }, [clientID, balance, setPortfolio, setLoading]);
 
     return (
         <>
             {loading ? (
-                <div className="spinner_container">
-                    <div className="spinner"></div>
+                <div className="table_container">
+                    <div className="spinner_container">
+                        <div className="spinner"></div>
+                    </div>
                 </div>) : (
-                <>
-                    {clientID && clientID !== "null" ? (
-                        portfolio.length > 0 ? (
-                            <div className="table_container">
-                                <table className="table portfolio">
-                                    <thead>
-                                        <tr>
-                                            {columns.map((column, index) => (
-                                                <th key={index}>{column}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {portfolio.map((rowData, rowIndex) => (
-                                            <tr key={rowIndex}>
-                                                {rowData.map((cellData, cellIndex) => (
-                                                    <td key={cellIndex}>{cellData}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ) : (
-                            <p>Portfolio is empty.</p>
-                        )
-                    ) : (
-                        <p>Please log in or sign up to view portfolio.</p>
-                    )}
-                </>
+
+
+
+                <div className="table_container">
+
+                    <table className="table portfolio">
+                        <thead>
+                            <tr>
+                                {columns.map((column, index) => (
+                                    <th key={index}>{column}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {portfolio.map((rowData, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {rowData.map((cellData, cellIndex) => (
+                                        <td key={cellIndex}>{cellData}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+
+
             )}
         </>
     );

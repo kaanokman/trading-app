@@ -43,6 +43,8 @@ export default function Login({ clientID, setClientID }) {
                 console.error('Error occurred:', error);
                 setMessage('An error occurred during login.');
                 setShowMessage(true);
+                setLoading(false);
+
             });
     };
 

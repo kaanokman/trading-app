@@ -43,6 +43,8 @@ export default function Signup({ clientID, setClientID }) {
                 console.error('Error occurred:', error);
                 setMessage('An error occurred during signup.');
                 setShowMessage(true);
+                setLoading(false);
+
             });
     };
 
