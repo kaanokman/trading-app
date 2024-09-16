@@ -36,6 +36,12 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
     const handleQuote = (e) => {
 
         e.preventDefault();
+
+        if (numShares <= 0) {
+            alert('Please enter a valid number of shares');
+            return;
+        }
+
         setLoading(true);
 
         setShowMessage(false);
@@ -140,16 +146,16 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
 
                 <div className="maketrade_box">
                     <div className="text_fields">
-                        <div class="title">Make Trade</div>
+                        <div className="title">Make Trade</div>
                         {quoteDisplayed === true ? (
                             <>
-                                <div class="text_field">Price/Share</div>
-                                <div class="text_field">Total Price</div>
+                                <div className="text_field">Price/Share</div>
+                                <div className="text_field">Total Price</div>
                             </>
                         ) : (
                             <>
-                                <div class="text_field_disabled">Price/Share</div>
-                                <div class="text_field_disabled">Total Price</div>
+                                <div className="text_field_disabled">Price/Share</div>
+                                <div className="text_field_disabled">Total Price</div>
                             </>
                         )}
                     </div>
@@ -310,9 +316,9 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
             ) : (
                 <div className="maketrade_box">
                     <div className="text_fields">
-                        <div class="title">Make Trade</div>
-                        <div class="text_field_disabled">Price/Share</div>
-                        <div class="text_field_disabled">Total Price</div>
+                        <div className="title">Make Trade</div>
+                        <div className="text_field_disabled">Price/Share</div>
+                        <div className="text_field_disabled">Total Price</div>
                     </div>
 
                     <form className="trade_fields" onSubmit={handleQuote}>

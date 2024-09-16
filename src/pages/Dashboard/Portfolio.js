@@ -4,8 +4,7 @@ import axios from 'axios';
 import "./Trade.css"
 
 
-export default function Portfolio({ balance, setBalance, clientID, setClientID }) {
-    const [portfolio, setPortfolio] = useState([]);
+export default function Portfolio({ balance, setBalance, clientID, setClientID, portfolio, setPortfolio }) {
     const columns = ['Stock', 'Shares', 'Price Paid', 'Value', 'Change'];
 
     // Function to format price
@@ -23,7 +22,7 @@ export default function Portfolio({ balance, setBalance, clientID, setClientID }
     useEffect(() => {
         if (clientID && clientID !== "null") {
 
-            const clientData = { client_id: clientID };
+            const clientData = { "client_id": clientID };
 
             axios.post('http://127.0.0.1:5000/get_portfolio', clientData)
                 .then(response => {
