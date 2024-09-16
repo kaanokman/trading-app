@@ -52,10 +52,9 @@ export default function Dashboard({ balance, setBalance }) {
                             balance={balance} setBalance={setBalance}
                         />
                     </div>
-                    <div className="watchlist_box">
-                        {/* <Watchlist/> */}
+                    {/* <div className="watchlist_box">
                         <div>Watchlist</div>
-                    </div>
+                    </div> */}
                     <div className="gettrades_box">
                         <h1>Trade History</h1>
                         <GetTrades
