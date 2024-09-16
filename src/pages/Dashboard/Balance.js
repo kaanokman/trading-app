@@ -155,45 +155,100 @@ export default function Balance({ clientID, setClientID, balance, setBalance, me
                         {formatPrice(portfolioValue)}
                     </div>
 
-                    <div className="amount">
 
-                        <input type="number" className="amount-field"
-                            placeholder="Amount"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                            required>
+                    {clientID && clientID !== "null" ? (
 
-                        </input>
+                        <>
 
-                    </div>
+                            <div className="amount">
 
-                    <div className="deposit">
+                                <input type="number" className="amount-field"
+                                    placeholder="Amount"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    required>
 
-                        <button type="button" className="deposit-button" onClick={(e) => {
-                            if (amount.trim() === '') {
-                                alert('Amount is required'); 
-                                return; 
-                            }
-                            handleDeposit();
-                        }}>
-                            DEPOSIT
-                        </button>
+                                </input>
 
-                    </div>
+                            </div>
 
-                    <div className="withdraw">
+                            <div className="deposit">
 
-                        <button type="button" className="withdraw-button" onClick={(e) => {
-                            if (amount.trim() === '') {
-                                alert('Amount is required'); 
-                                return; 
-                            }
-                            handleWithdraw();
-                        }}>
-                            WITHDRAW
-                        </button>
+                                <button type="button" className="deposit-button" onClick={(e) => {
+                                    if (amount.trim() === '') {
+                                        alert('Amount is required');
+                                        return;
+                                    }
+                                    handleDeposit();
+                                }}>
+                                    DEPOSIT
+                                </button>
 
-                    </div>
+                            </div>
+
+                            <div className="withdraw">
+
+                                <button type="button" className="withdraw-button" onClick={(e) => {
+                                    if (amount.trim() === '') {
+                                        alert('Amount is required');
+                                        return;
+                                    }
+                                    handleWithdraw();
+                                }}>
+                                    WITHDRAW
+                                </button>
+
+                            </div>
+
+                        </>
+
+                    ) : (
+
+                        <>
+
+                            <div className="amount">
+
+                                <input type="number" disabled className="amount-field"
+                                    placeholder="Amount"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    required>
+
+                                </input>
+
+                            </div>
+
+                            <div className="deposit">
+
+                                <button type="button" disabled className="deposit-button" onClick={(e) => {
+                                    if (amount.trim() === '') {
+                                        alert('Amount is required');
+                                        return;
+                                    }
+                                    handleDeposit();
+                                }}>
+                                    DEPOSIT
+                                </button>
+
+                            </div>
+
+                            <div className="withdraw">
+
+                                <button type="button" disabled className="withdraw-button" onClick={(e) => {
+                                    if (amount.trim() === '') {
+                                        alert('Amount is required');
+                                        return;
+                                    }
+                                    handleWithdraw();
+                                }}>
+                                    WITHDRAW
+                                </button>
+
+                            </div>
+
+                        </>
+
+                    )}
 
                 </div>
 

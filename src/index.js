@@ -12,7 +12,7 @@ export const ClientContext = createContext();
 
 export default function App() {
 
-    const [clientID, setClientID] = useState('123abc');
+    const [clientID, setClientID] = useState('');
     const [balance, setBalance] = useState(0);
 
     return (

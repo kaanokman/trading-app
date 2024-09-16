@@ -277,5 +277,20 @@
 
 }
 
+.deposit-button:disabled {
+    opacity: .6;
+    cursor: default;
+}
+
+.withdraw-button:disabled {
+    opacity: .6;
+    cursor: default;
+}
+
+.amount-field:disabled
+{
+    opacity: .6;
+    cursor: default;
+}
 
 
