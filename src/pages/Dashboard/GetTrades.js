@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import "./Trade.css"
 
-export default function GetTrades({ clientID, setClientID, balance, setBalance }) {
+export default function GetTrades({ tradeMade, setTradeMade, clientID, setClientID, balance, setBalance }) {
     const [trades, setTrades] = useState([]);
     const columns = ['Stock', 'Action', 'Shares', 'Price', 'Total Price', 'Date & Time'];
 
@@ -50,7 +50,7 @@ export default function GetTrades({ clientID, setClientID, balance, setBalance }
         else {
             setLoading(false);
         }
-    }, [clientID, balance, setLoading]);
+    }, [clientID, tradeMade, setLoading]);
 
     return (
         <>

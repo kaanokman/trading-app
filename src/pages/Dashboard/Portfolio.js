@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./Trade.css"
 
 
-export default function Portfolio({ balance, setBalance, clientID, setClientID, portfolio, setPortfolio }) {
+export default function Portfolio({ tradeMade, setTradeMade, balance, setBalance, clientID, setClientID, portfolio, setPortfolio }) {
     const columns = ['Stock', 'Shares', 'Price Paid', 'Value', 'Change'];
 
     // Function to format price
@@ -53,7 +53,7 @@ export default function Portfolio({ balance, setBalance, clientID, setClientID, 
         }
 
         else { setLoading(false) }
-    }, [clientID, balance, setPortfolio, setLoading]);
+    }, [clientID, tradeMade, setPortfolio, setLoading]);
 
     return (
         <>

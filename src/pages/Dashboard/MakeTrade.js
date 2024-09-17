@@ -6,7 +6,7 @@ import "./Dashboard.css"
 
 import SearchableDropdown from "./SearchableDropdown"
 
-export default function MakeTrade({ showMessage, setShowMessage, message, setMessage, clientID, setClientID, balance, setBalance }) {
+export default function MakeTrade({ tradeMade, setTradeMade, showMessage, setShowMessage, message, setMessage, clientID, setClientID, balance, setBalance }) {
     const [stockTicker, setStockTicker] = useState('');
     const [numShares, setNumShares] = useState('');
     const [action, setAction] = useState('BUY');
@@ -27,6 +27,7 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
     };
 
     const handleCancel = (e) => {
+        setShowMessage(false)
         setQuotePrice(0)
         setTotalQuotePrice(0)
         setQuoteDisplayed(false);
@@ -49,6 +50,7 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
 
         if (stockTicker === '' && isStockTickerRequired) {
             setMessage('Please select a stock ticker.');
+            setShowMessage(true)
             return;
         }
 
@@ -98,6 +100,7 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
 
         if (stockTicker === '' && isStockTickerRequired) {
             setMessage('Please select a stock ticker.');
+            setShowMessage(true)
             return;
         }
 
@@ -116,6 +119,9 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
                 if (message === 'Trade Complete.') {
                     setMessage('Trade Successful!');
 
+                    if (tradeMade === 0) { setTradeMade(1) }
+                    else { setTradeMade(0) }
+
                     setQuotePrice(0)
                     setTotalQuotePrice(0)
                     setQuoteDisplayed(false);
@@ -132,6 +138,9 @@ export default function MakeTrade({ showMessage, setShowMessage, message, setMes
                 } else {
 
                     setMessage(message);
+                    setQuoteDisplayed(false);
+                    setShowMessage(true);
+
                 }
             })
             .catch(error => {

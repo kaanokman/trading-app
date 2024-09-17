@@ -16,6 +16,7 @@ export default function Dashboard({ balance, setBalance }) {
     const [message, setMessage] = useState('Message');
     const [showMessage, setShowMessage] = useState(false);
     const [portfolio, setPortfolio] = useState([]);
+    const [tradeMade, setTradeMade] = useState(0);
 
     return (
 
@@ -30,6 +31,7 @@ export default function Dashboard({ balance, setBalance }) {
                 <div className="grid-dashboard">
                     <div className="maketrade_box">
                         <MakeTrade
+                        tradeMade={tradeMade} setTradeMade={setTradeMade}
                             showMessage={showMessage} setShowMessage={setShowMessage}
                             message={message} setMessage={setMessage}
                             clientID={clientID} setClientID={setClientID}
@@ -47,6 +49,7 @@ export default function Dashboard({ balance, setBalance }) {
                     <div className="portfolio_box">
                         <h1>Portfolio</h1>
                         <Portfolio
+                        tradeMade={tradeMade} setTradeMade={setTradeMade}
                         portfolio={portfolio} setPortfolio={setPortfolio}
                         clientID={clientID} setClientID={setClientID}
                             balance={balance} setBalance={setBalance}
@@ -58,7 +61,7 @@ export default function Dashboard({ balance, setBalance }) {
                     <div className="gettrades_box">
                         <h1>Trade History</h1>
                         <GetTrades
-                    
+                    tradeMade={tradeMade} setTradeMade={setTradeMade}
                             clientID={clientID} setClientID={setClientID}
                             balance={balance} setBalance={setBalance} />
                     </div>

@@ -19,9 +19,12 @@ export default function Signup({ clientID, setClientID }) {
         e.preventDefault();
         setLoading(true);
         setShowMessage(false);
+        // Update clientID to reflect the value of displayClientID
+        setClientID(displayClientID);
+
 
         const signupData = {
-            client_id: clientID,
+            client_id: displayClientID,  // Use displayClientID here
             password: password
         };
 
@@ -30,6 +33,8 @@ export default function Signup({ clientID, setClientID }) {
                 setTimeout(() => {
                     if (response.data === 'Signup Success') {
                         setClientID(displayClientID);
+                        setLoading(false);
+
                         navigate('/dashboard');
                     }
                     else {

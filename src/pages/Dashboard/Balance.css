@@ -143,8 +143,9 @@
 .amount-field{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     height: 100%;
     width: 100%;
     margin: 0px;
@@ -152,9 +153,9 @@
     /* border: 2px solid #333; */
     border-radius: 5px;
     box-sizing: border-box;
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     outline: none;
     font-size: 13px;
     font-weight: 300;
