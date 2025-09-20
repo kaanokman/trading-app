@@ -1,4 +1,4 @@
-# Trading & Portfolio Analytics Single-Page Web App
+# Banking/Trading Web Application
 
 This is a multi-tiered web application using a JavaScript (React) front-end, a Python (Flask) back-end, and a relational database (PostgreSQL) that mimics the functionality of a real-life banking/trading app. Users can log in, deposit money, make trades, view their balance, and view their portfolio.
 
